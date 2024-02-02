@@ -1,22 +1,23 @@
-from calendar import c
 import tkinter as tk
 from models.cell import Cell
+from models.maze import Maze
 
-from window import Window
+from models.window import Window
 from models.line import Line
 from models.point import Point
 
 def main():
     window = Window(800, 600)
+    # calculate number of rows and columns based on cell size and window size
+    cell_size = 50
     
-    # draw 2 adjacent cells
-    cell1 = Cell(True, False, True, True, 100, 100, 200, 200, window)
-    cell2 = Cell(False, True, True, True, 200, 100, 300, 200, window)
-    cell1.draw()
-    cell2.draw()
+    print(f"{window.canvas.winfo_height()} x {window.canvas.winfo_width()}")
     
-    # draw a move from cell1 to cell2
-    cell1.draw_move(cell2)
+    num_rows = window.canvas.winfo_height() // cell_size
+    num_cols = window.canvas.winfo_width() // cell_size
+        
+    maze = Maze(0, 0, num_rows, num_cols, cell_size, cell_size, window)
+    maze.create_cells()
     
     window.wait_for_close()
     

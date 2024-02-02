@@ -11,14 +11,15 @@ class Window:
         self.root.protocol("WM_DELETE_WINDOW", self.close)
         self.canvas = tk.Canvas(self.root, width=width, height=height)
         self.canvas.pack()
+        self.canvas.update()
         self.running = False
     
     def loop(self):
         self.root.mainloop()
         
-    def redraw(self, window):
-        window.update()
-        window.update_idletasks()
+    def redraw(self):
+        self.root.update()
+        self.root.update_idletasks()
         
     def wait_for_close(self):
         self.running = True
