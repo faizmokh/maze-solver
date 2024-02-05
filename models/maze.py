@@ -40,12 +40,12 @@ class Maze:
         x1, y1, x2, y2 = self._calculate_cell_location(i, j)
         cell = Cell(has_left_wall, has_right_wall, has_top_wall, has_bottom_wall, x1, y1, x2, y2, self.win)
         cell.draw()
-        self._animate()
+        self._animate(speed=0.0001)
         
-    def _animate(self):
+    def _animate(self, speed=0.01):
         self.win.redraw()
         # sleep for 0.01 second
-        sleep(0.01)
+        sleep(speed)
         
     def _calculate_cell_location(self, i, j):
         x1 = self.x1 + j * self.cell_size_x

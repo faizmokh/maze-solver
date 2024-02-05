@@ -28,7 +28,7 @@ class Cell:
             self.win.draw_line(Line(Point(self.x1, self.y2), Point(self.x2, self.y2)), fill_color)
         
     def draw_move(self, to_cell, undo=False):
-        line_color = "gray" if undo else "red"
+        line_color = "orange" if undo else "red"
         
         mid_point = self.mid_point()
         to_mid_point = to_cell.mid_point()
