@@ -9,7 +9,7 @@ from models.point import Point
 def main():
     window = Window(1000, 800)
     # calculate number of rows and columns based on cell size and window size
-    cell_size = 50
+    cell_size = 21
     
     print(f"{window.canvas.winfo_height()} x {window.canvas.winfo_width()}")
     

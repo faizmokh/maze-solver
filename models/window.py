@@ -30,5 +30,5 @@ class Window:
         self.running = False
         self.root.destroy()
         
-    def draw_line(self, line: Line, fill_color="black"):
-        line.draw(self.canvas, fill_color)
+    def draw_line(self, line: Line, fill_color="black", width=1):
+        line.draw(self.canvas, fill_color, width=width)

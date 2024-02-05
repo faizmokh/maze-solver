@@ -14,6 +14,6 @@ class Line:
     def __str__(self):
         return f"Line from {self.start} to {self.end}"
     
-    def draw(self, canvas, color="black"):
-        canvas.create_line(self.start.x, self.start.y, self.end.x, self.end.y, fill=color, width=2)
+    def draw(self, canvas, color="black", width=1):
+        canvas.create_line(self.start.x, self.start.y, self.end.x, self.end.y, fill=color, width=width)
         canvas.pack()
