@@ -19,6 +19,8 @@ def main():
     maze = Maze(10, 10, num_rows, num_cols, cell_size, cell_size, window)
     maze.create_cells()
     maze.break_walls_r(0, 0)
+    maze.reset_cells_visited()
+    maze.solve()
     
     window.wait_for_close()
     

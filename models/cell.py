@@ -31,10 +31,8 @@ class Cell:
         line_color = "gray" if undo else "red"
         
         is_adjacent = self.is_adjacent(to_cell)
-        print(is_adjacent)
         mid_point = self.mid_point()
         to_mid_point = to_cell.mid_point()
-        print("GOES HERE")
         self.win.draw_line(Line(mid_point, to_mid_point), line_color)
         
         
