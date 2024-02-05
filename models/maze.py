@@ -19,6 +19,12 @@ class Maze:
         self.seed = seed if seed is not None else random.seed(seed)
         self.cells = []
         
+    def start(self):
+        self.create_cells()
+        self.break_walls_r(0, 0)
+        self.reset_cells_visited()
+        self.solve()
+        
     def create_cells(self):
         for i in range(self.num_rows):
             row = []
@@ -29,18 +35,6 @@ class Maze:
                 y2 = y1 + self.cell_size_y
                 row.append(Cell(True, True, True, True, x1, y1, x2, y2, self.win))
             self.cells.append(row)
-            
-        # for i in range(self.num_rows):
-        #     for j in range(self.num_cols):
-        #         if i == 0 and j == 0:
-        #             print(f"Start cell x={i}, y={j}")
-        #             self._draw_cell(i, j, has_top_wall=False)
-        #         elif i == len(self.cells) - 1 and j == len(self.cells[i]) - 1:
-        #             print("End cell")
-        #             self._draw_cell(i, j, has_bottom_wall=False)
-        #         else:
-        #             self._draw_cell(i, j)
-                        
 
     def _draw_cell(self, i, j, has_left_wall=True, has_right_wall=True, has_top_wall=True, has_bottom_wall=True):
         x1, y1, x2, y2 = self._calculate_cell_location(i, j)

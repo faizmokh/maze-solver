@@ -16,11 +16,13 @@ def main():
     num_rows = (window.canvas.winfo_height() - 20)// cell_size
     num_cols = (window.canvas.winfo_width() - 20) // cell_size
         
-    maze = Maze(10, 10, num_rows, num_cols, cell_size, cell_size, window)
-    maze.create_cells()
-    maze.break_walls_r(0, 0)
-    maze.reset_cells_visited()
-    maze.solve()
+    while True:
+        maze = Maze(10, 10, num_rows, num_cols, cell_size, cell_size, window)
+        print("Starting maze")
+        maze.start()
+        window.canvas.delete("all")
+        
+        
     
     window.wait_for_close()
     
