@@ -55,37 +55,40 @@ class Maze:
         return x1, y1, x2, y2
             
     def break_walls_r(self, i, j):
-        print(f"Breaking walls for cell x={i}, y={j}")
-        self.cells[i][j].visited = True
-        
-        while True:
-            neighbors = []
+        try: 
+            print(f"Breaking walls for cell x={i}, y={j}")
+            self.cells[i][j].visited = True
             
-            for (neighbor_i, neighbor_j) in self.get_valid_neighbors(i, j):
-                if not self.cells[neighbor_i][neighbor_j].visited:
-                    neighbors.append((neighbor_i, neighbor_j))
-                    
-            if not neighbors:
-                if i == 0 and j == 0:
-                    self.cells[i][j].has_top_wall = False
-                elif i == self.num_rows - 1 and j == self.num_cols - 1:
-                    self.cells[i][j].has_bottom_wall = False
-                self._draw_cell(
-                    i, 
-                    j, 
-                    has_left_wall=self.cells[i][j].has_left_wall, 
-                    has_right_wall=self.cells[i][j].has_right_wall, 
-                    has_top_wall=self.cells[i][j].has_top_wall, 
-                    has_bottom_wall=self.cells[i][j].has_bottom_wall
-                    )
-                return
-            
-            neighbor_index = random.randrange(len(neighbors))
-            ni, nj = neighbors[neighbor_index]
-            
-            self.remove_wall(i, j, ni, nj)
+            while True:
+                neighbors = []
+                
+                for (neighbor_i, neighbor_j) in self.get_valid_neighbors(i, j):
+                    if not self.cells[neighbor_i][neighbor_j].visited:
+                        neighbors.append((neighbor_i, neighbor_j))
+                        
+                if not neighbors:
+                    if i == 0 and j == 0:
+                        self.cells[i][j].has_top_wall = False
+                    elif i == self.num_rows - 1 and j == self.num_cols - 1:
+                        self.cells[i][j].has_bottom_wall = False
+                    self._draw_cell(
+                        i, 
+                        j, 
+                        has_left_wall=self.cells[i][j].has_left_wall, 
+                        has_right_wall=self.cells[i][j].has_right_wall, 
+                        has_top_wall=self.cells[i][j].has_top_wall, 
+                        has_bottom_wall=self.cells[i][j].has_bottom_wall
+                        )
+                    return
+                
+                neighbor_index = random.randrange(len(neighbors))
+                ni, nj = neighbors[neighbor_index]
+                
+                self.remove_wall(i, j, ni, nj)
 
-            self.break_walls_r(ni, nj)
+                self.break_walls_r(ni, nj)
+        except RecursionError:
+            print(f"Recursion error at i={i}, j={j}")
             
     def get_valid_neighbors(self, i, j):
         neighbors = []
