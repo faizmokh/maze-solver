@@ -31,21 +31,27 @@ class Maze:
             
         for i in range(self.num_rows):
             for j in range(self.num_cols):
-                self.draw_cell(i, j)
-                      
+                if i == 0 and j == 0:
+                    print(f"Start cell x={i}, y={j}")
+                    self._draw_cell(i, j, has_top_wall=False)
+                elif i == len(self.cells) - 1 and j == len(self.cells[i]) - 1:
+                    print("End cell")
+                    self._draw_cell(i, j, has_bottom_wall=False)
+                else:
+                    self._draw_cell(i, j)        
 
-    def draw_cell(self, i, j):
-        x1, y1, x2, y2 = self.calculate_cell_location(i, j)
-        cell = Cell(True, True, True, True, x1, y1, x2, y2, self.win)
+    def _draw_cell(self, i, j, has_left_wall=True, has_right_wall=True, has_top_wall=True, has_bottom_wall=True):
+        x1, y1, x2, y2 = self._calculate_cell_location(i, j)
+        cell = Cell(has_left_wall, has_right_wall, has_top_wall, has_bottom_wall, x1, y1, x2, y2, self.win)
         cell.draw()
-        self.animate()
+        self._animate()
         
-    def animate(self):
+    def _animate(self):
         self.win.redraw()
-        # sleep for 0.5 second
+        # sleep for 0.05 second
         sleep(0.05)
         
-    def calculate_cell_location(self, i, j):
+    def _calculate_cell_location(self, i, j):
         x1 = self.x1 + j * self.cell_size_x
         y1 = self.y1 + i * self.cell_size_y
         x2 = x1 + self.cell_size_x
