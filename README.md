@@ -2,4 +2,4 @@
 
 Just solving randomly generated maze.
 
-[image](./assets/ss.png)
+![Screenshot](./assets/ss.png)
